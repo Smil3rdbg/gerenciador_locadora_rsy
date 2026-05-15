@@ -18,3 +18,12 @@ def cadastro_livro():
     livro['ano'] = input('Digite o ano de lançamento: ')
     print(f'\n--------------------------------------------------\nTítulo: {livro["titulo"]}\nAutor: {livro["autor"]}\nAno de lançamento: {livro["ano"]}\n\n-----------Livro cadastrado com sucesso!----------')  
     return livro  
+
+
+def cadastro_hq():
+    hq = {} 
+    hq['titulo'] = input('Digite o título da HQ: ')
+    hq['autor'] = input('Digite o nome do autor: ')  
+    hq['ano'] = input('Digite o ano de lançamento: ')
+    print(f'\n--------------------------------------------------\nTítulo: {hq["titulo"]}\nAutor: {hq["autor"]}\nAno de lançamento: {hq["ano"]}\n\n-----------HQ cadastrada com sucesso!----------')  
+    return hq  
