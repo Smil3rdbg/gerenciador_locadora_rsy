@@ -11,6 +11,23 @@ lista_filme = [
     }
 ]  #lista com infos pra testar
 
-lista_livro = []  #cria uma lista vazia para armazenar os livros cadastrados
+lista_filme = []
 
-lista_hq = [] 
+lista_livro = []
+
+lista_usuario = []
+
+dividas = []
+
+compras_alugueis = []
+
+
+# ESTOQUES
+
+estoque_fitas = []
+
+estoque_comidas = []
+
+estoque_merch = []
+
+estoque_videocassete = []
