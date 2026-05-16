@@ -1,175 +1,256 @@
-# mostrar data d qnd foi alugado e devolvido (Em desenvolvimento)
-
-# =========================================
-# SISTEMA DE LOCADORA DE FILMES
-# =========================================
-
-import json
-
-# Lista onde os filmes serão armazenados 
-filmes = []
+from utils import * # pega tudo que existe no arquivo utils.py.
+import random # importa a biblioteca random para gerar números aleatórios, usada para criar IDs únicos para filmes, livros e HQs cadastrados
 
 
-# =========================
-# FUNÇÃO PARA CADASTRAR
-# =========================
-def cadastrar_filme():
-    print("\n--- CADASTRAR FILME ---")
+def gerar_id():
+    return random.randint(1000, 9999)  # função que gera um número aleatório entre 1000 e 9999, usado para criar IDs únicos para filmes, livros e HQs cadastrados
 
-    nome = input("Digite o nome do filme: ")
-    genero = input("Digite o gênero: ")
-    autor = input("Digite o autor(a): ")
-    data = input("Digite a data de lançamento: ")
 
-    filme = [
-        {
-        "Nome": nome,
-        "Gênero": genero,
-        "Autor(a)": autor,
-        "Data de lançamento": data
-        }
-    ]
+# ================= CADASTROS =================
 
-    filmes.append(filme)
+def cadastro_filme():
+    filme = {}
+
+    filme["id"] = gerar_id()
+    filme["titulo"] = input("Digite o título do filme: ")
+    filme["diretor"] = input("Digite o diretor: ")
+    filme["ano"] = input("Digite o ano: ")
+
+    lista_filme.append(filme)
 
     print("\nFilme cadastrado com sucesso!")
+    print(filme)
 
 
-# =========================
-# FUNÇÃO PARA LISTAR
-# =========================
-def listar_filmes():
-    print("\n--- LISTA DE FILMES ---")
+def cadastro_livro():
+    livro = {}
 
-    if len(filmes) == 0:
-        print("Nenhum filme cadastrado.")
+    livro["id"] = gerar_id()
+    livro["titulo"] = input("Digite o título do livro: ")
+    livro["autor"] = input("Digite o autor: ")
+    livro["ano"] = input("Digite o ano: ")
+
+    lista_livro.append(livro)
+
+    print("\nLivro cadastrado com sucesso!")
+    print(livro)
+
+
+def cadastro_usuario():
+    usuario = {}
+
+    usuario["id"] = gerar_id()
+    usuario["nome"] = input("Digite o nome do usuário: ")
+
+    email = input("Digite o email: ")
+
+    if "@" in email and ".com" in email:
+        usuario["email"] = email
     else:
-        for i, filme in enumerate(filmes): # O enumerate vai mostrar o número do filme, começando do 1, e o filme em si.
-           print(f"""
-Nome: {filme[0].get("Nome", "Não informado")}
-Gênero: {filme[0].get("Gênero", "Não informado")}
-Autor(a): {filme[0].get("Autor(a)", "Não informado")}
-Data de lançamento: {filme[0].get("Data de lançamento", "Não informado")}
-""")
+        print("Email inválido!")
+        return
 
- # O get vai evitar caso tenha algum erro de chave, ele vai mostrar que não tem a informação, evitando mostrar a mensagem de erro.
+    senha = input("Digite a senha: ")
 
+    if len(senha) >= 6:
+        usuario["senha"] = senha
+    else:
+        print("Senha inválida! Precisa ter pelo menos 6 caracteres.")
+        return
 
-# =========================
-# Função para procurar os filminhos
-# =========================
-def buscar_filme():
-    print("\n--- BUSCAR FILME ---")
+    usuario["divida"] = 0.0
 
-    nome_busca = input("Digite o nome do filme: ")
+    lista_usuario.append(usuario)
 
-    encontrado = False
-
-    for filme in filmes:
-        if filme["Nome"].lower() == nome_busca.lower():
-            print("\nFilme encontrado!")
-            print(f"""
-Nome: {filme["Nome"]}
-Gênero: {filme["Gênero"]}
-Autor(a): {filme["Autor(a)"]}
-Data de lançamento: {filme["Data de lançamento"]}
-""")
-            encontrado = True
-
-    if encontrado == False:
-        print("Filme não encontrado.")
+    print("\nUsuário cadastrado com sucesso!")
+    print(usuario)
 
 
-# =========================
-# Função para apagar algum filme
-# =========================
-def remover_filme():
-    print("\n--- REMOVER FILME ---")
+# ================= VER CADASTROS =================
 
-    nome_remover = input("Digite o nome do filme: ")
+def ver_filmes():
+    print("\n--- FILMES CADASTRADOS ---")
 
-    for filme in filmes:
-        if filme["Nome"].LOWER() == nome_remover.lower():
-            filmes.remove(filme)
-            print("Filme removido com sucesso!")
+    for filme in lista_filme:
+        print(filme)
+
+
+def ver_livros():
+    print("\n--- LIVROS CADASTRADOS ---")
+
+    for livro in lista_livro:
+        print(livro)
+
+
+def ver_usuarios():
+    print("\n--- USUÁRIOS CADASTRADOS ---")
+
+    for usuario in lista_usuario:
+        print(usuario)
+
+
+# ================= APAGAR DÍVIDA =================
+
+def apagar_divida():
+    nome = input("Digite o nome do usuário: ")
+
+    for usuario in lista_usuario:
+        if usuario["nome"] == nome:
+            usuario["divida"] = 0.0
+            print("Dívida apagada com sucesso!")
             return
 
-    print("Filme não encontrado.")
+    print("Usuário não encontrado!")
 
 
-# =========================
-# Salvar em Json
-# =========================
-def salvar_json():
-    with open("filmes.json", "w", encoding="utf-8") as arquivo:
-        json.dump(filmes, arquivo, indent=4, ensure_ascii=False)
+# ================= ESTOQUE EM PILHA =================
 
-    print("Dados salvos no arquivo JSON!")
-
-
-# =========================
-# Carregar Json
-# =========================
-def carregar_json():
-    global filmes
-
-    try:
-        with open("filmes.json", "r", encoding="utf-8") as arquivo:
-            filmes = json.load(arquivo)
-
-        print("Dados carregados com sucesso!")
-
-    except FileNotFoundError:
-        print("Arquivo JSON não encontrado. Um novo será criado.")
-
-
-# =========================
-# MENU PRINCIPAL
-# =========================
-def menu():
-    carregar_json()
-
-    while True:
-        print("""
-======== LOCADORA ========
-
-1 - Cadastrar filme
-2 - Listar filmes
-3 - Buscar filme
-4 - Remover filme
-5 - Salvar dados
-0 - Sair
-
-==========================
+def adicionar_estoque():
+    print("""
+1 - Fita
+2 - Comida
+3 - Merch
+4 - Videocassete
 """)
 
-        opcao = input("Escolha uma opção: ")
+    opcao = input("Escolha o tipo de item: ")
+    item = input("Digite o nome do item: ")
 
-        if opcao == "1":
-            cadastrar_filme()
+    if opcao == "1":
+        estoque_fitas.append(item)
+        print("Fita adicionada!")
 
-        elif opcao == "2":
-            listar_filmes()
+    elif opcao == "2":
+        estoque_comidas.append(item)
+        print("Comida adicionada!")
 
-        elif opcao == "3":
-            buscar_filme()
+    elif opcao == "3":
+        estoque_merch.append(item)
+        print("Merch adicionado!")
 
-        elif opcao == "4":
-            remover_filme()
+    elif opcao == "4":
+        estoque_videocassete.append(item)
+        print("Videocassete adicionado!")
 
-        elif opcao == "5":
-            salvar_json()
+    else:
+        print("Opção inválida!")
 
-        elif opcao == "0":
-            salvar_json()
-            print("Encerrando sistema...")
-            break
 
+def remover_estoque():
+    print("""
+1 - Fita
+2 - Comida
+3 - Merch
+4 - Videocassete
+""")
+
+    opcao = input("Escolha o estoque: ")
+
+    if opcao == "1":
+        if len(estoque_fitas) > 0:
+            item = estoque_fitas.pop()
+            print("Item removido:", item)
         else:
-            print("Opção inválida!")
+            print("Estoque vazio!")
+
+    elif opcao == "2":
+        if len(estoque_comidas) > 0:
+            item = estoque_comidas.pop()
+            print("Item removido:", item)
+        else:
+            print("Estoque vazio!")
+
+    elif opcao == "3":
+        if len(estoque_merch) > 0:
+            item = estoque_merch.pop()
+            print("Item removido:", item)
+        else:
+            print("Estoque vazio!")
+
+    elif opcao == "4":
+        if len(estoque_videocassete) > 0:
+            item = estoque_videocassete.pop()
+            print("Item removido:", item)
+        else:
+            print("Estoque vazio!")
+
+    else:
+        print("Opção inválida!")
 
 
-# =========================
-# INICIAR SISTEMA
-# =========================
-menu()
+def ver_estoque():
+    print("\n--- ESTOQUE DE FITAS ---")
+    print(estoque_fitas)
+
+    print("\n--- ESTOQUE DE COMIDAS ---")
+    print(estoque_comidas)
+
+    print("\n--- ESTOQUE DE MERCH ---")
+    print(estoque_merch)
+
+    print("\n--- ESTOQUE DE VIDEOCASSETE ---")
+    print(estoque_videocassete)
+
+
+# ================= COMPRA / ALUGUEL =================
+
+def compra_aluguel():
+    nome = input("Nome do usuário: ")
+    item = input("Nome do item: ")
+
+    print("""
+1 - Comprar
+2 - Alugar
+""")
+
+    opcao = input("Escolha: ")
+
+    registro = {}
+
+    registro["usuario"] = nome
+    registro["item"] = item
+
+    if opcao == "1":
+        registro["tipo"] = "Compra"
+        print("Compra feita com sucesso!")
+
+    elif opcao == "2":
+        registro["tipo"] = "Aluguel"
+        registro["status"] = "Alugado"
+        print("Aluguel feito com sucesso!")
+
+    else:
+        print("Opção inválida!")
+        return
+
+    compras_alugueis.append(registro)
+
+
+# ================= DEVOLUÇÃO =================
+
+def devolucao():
+    nome_item = input("Digite o nome do item para devolver: ")
+
+    for registro in compras_alugueis:
+        if registro["item"] == nome_item and registro["tipo"] == "Aluguel":
+            registro["status"] = "Devolvido"
+            print("Item devolvido com sucesso!")
+            return
+
+    print("Aluguel não encontrado!")
+
+
+# ================= IFOOD DE FITA =================
+
+def ifood_fita():
+    filme = input("Qual fita você quer receber em casa? ")
+    endereco = input("Digite seu endereço: ")
+
+    pedido = {}
+
+    pedido["filme"] = filme
+    pedido["endereco"] = endereco
+    pedido["status"] = "Saiu para entrega"
+
+    print("\nPedido feito com sucesso!")
+    print(pedido)
