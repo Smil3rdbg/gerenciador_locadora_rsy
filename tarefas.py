@@ -1,29 +1,9 @@
 #casdastro de filme e livros , cadastro usuario, validacao de senha e email, Apagar divida, sistema de compra/aluguel (fita, comida,merch,videocassete) e devolucao, ifood de fita, sistema de estoque feito em pilha
 
+from utils import lista_filme, lista_livro, lista_hq
 import random
 
 id = random.randint(1000, 9999999)  #gera um número aleatório entre 1000 e 9999999 para ser usado como ID do filme, livro ou HQ cadastrado
-
-#LISTAS 
-
-lista_filme = [
-    {
-        "id": 9864344,
-        "titulo": "Sara",
-        "diretor": "linda",
-        "ano": "maravilhosa"
-    },
-    {
-        "id": 7609292,
-        "titulo": "fcsag",
-        "diretor": "gaagaga",
-        "ano": "gagfag"
-    }
-]  #lista com infos pra testar
-
-lista_livro = []  #cria uma lista vazia para armazenar os livros cadastrados
-
-lista_hq = [] 
 
 #FUNÇÕES
 
@@ -68,18 +48,39 @@ def cadastro_hq():
 
 def apagar_cadastrofilme(lista_filme):
     
-        id_para_apagar = int(input('Digite o ID do filme que deseja apagar: '))  #PERGUNTA PRIMEIRO (Fora do loop, para perguntar uma vez só)
+        id_para_apagar = int(input('\n\nDigite o ID do filme que deseja apagar: '))  #PERGUNTA PRIMEIRO (Fora do loop, para perguntar uma vez só)
         
         for filme in lista_filme: #PARA variavel (dicionario) NA lista de filmes FAÇA:
             if id_para_apagar == filme['id']: #SE o id digitado for igual ao id do filme na lista ENTÃO:
-                lista_filme.remove(filme) #remove o filme da lista de filmes
-                print('Cadastro apagado com sucesso!') 
-        print(lista_filme) #para parar o loop
-        return 
+                lista_filme.remove(filme)
+            else:    
+                print('\n\nID não encontrado! Tente novamente.\n\n') 
+                return #remove o filme da lista de filmes 
         
-
+def apagar_cadastrolivro(lista_livro):
     
-
+        id_para_apagar = int(input('\n\nDigite o ID do livro que deseja apagar: '))  
+        
+        for livro in lista_livro: 
+            if id_para_apagar == livro['id']: 
+                lista_livro.remove(livro)
+            else:    
+                print('\n\nID não encontrado! Tente novamente.\n\n') 
+                return 
+        
+def apagar_cadastrohq(lista_hq):
+    
+        id_para_apagar = int(input('\n\nDigite o ID da HQ que deseja apagar: '))  
+        
+        for hq in lista_hq: 
+            if id_para_apagar == hq['id']: 
+                lista_hq.remove(hq)
+            else:    
+                print('\n\nID não encontrado! Tente novamente.\n\n') 
+                return 
+        
+                
+    
 
 #VER ITENS CADASTRADOS
 
@@ -97,4 +98,5 @@ def ver_infos_hq(lista_hq):
     print("\n---------HQS CADASTRADAS:--------\n")
     for hq in lista_hq:
         print(hq)
+
 
