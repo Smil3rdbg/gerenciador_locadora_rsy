@@ -2,32 +2,29 @@
 
 #LISTAS 
 
+#entre '' é str sem é int
+
+
+import random
+
+
+def chama_id():
+    id_ezin = random.randint(1000, 999999999)  # Gera um número aleatório entre 1 e 1000 para o ID
+    return id_ezin
+
+
+
 lista_filme = [
     {
-        "id": 9864344,
-        "titulo": "Sara",
-        "diretor": "linda",
-        "ano": "maravilhosa"
+        'id': chama_id(),
+        'titulo': 'Vingadores: Ultimato',
+        'genero': 'Ação',
+        'estoque': 5,
+        'estudio': 'Marvel Studios',
+        'ano': 2019
     }
-]  #lista com infos pra testar
+]  
 
-lista_filme = []
+lista_livro = []  #cria uma lista vazia para armazenar os livros cadastrados
 
-lista_livro = []
-
-lista_usuario = []
-
-dividas = []
-
-compras_alugueis = []
-
-
-# ESTOQUES
-
-estoque_fitas = []
-
-estoque_comidas = []
-
-estoque_merch = []
-
-estoque_videocassete = []
+lista_hq = [] 
