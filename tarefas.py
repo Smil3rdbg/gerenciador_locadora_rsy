@@ -1,14 +1,14 @@
 #casdastro de filme e livros , cadastro usuario, validacao de senha e email, Apagar divida, sistema de compra/aluguel (fita, comida,merch,videocassete) e devolucao, ifood de fita, sistema de estoque feito em pilha
 
-from utils import chama_id, lista_filme, lista_livro, lista_hq
-import random
+from utils import *
+
 
 
    
 
 #FUNÇÕES
 
-def cadastro_filme():
+def cadastro_filme(lista_filme):
     filme = {} #criou um dicionário vazio para armazenar as informações do filme
     filme['id'] = chama_id()  #atribui o ID gerado ao filme
     filme['titulo'] = input('\nDigite o TÍTULO do filme: ')
@@ -16,11 +16,14 @@ def cadastro_filme():
     while True : # (loop) enquanto for verdade que o input não é int ele vai ficar em looping
         estoque = input('\nDigite a QUANTIDADE de exemplares em ESTOQUE: ') #tive que criar a variavel estoque fora do dic pra atribuir o dado numero caso estivesse sido colocado
         if estoque.isdigit(): #o valor dado é int?
-            filme['estoque'] = int(estoque)
+            estoque = int(estoque)
+            filme['estoque'] = list(range(1, estoque +1, 1))
             break # quebra o loop caso o usuario digite um número válido para o estoque
         else :  
             print('\nValor inválido para estoque. Por favor, digite um número.')
+
     filme['estudio'] = input('\nDigite o nome do ESTÚDIO: ') # o problema era aq q o estudio tava dentro do loop do estoque, ai eu separei em 3 etapar assim colocando ua folha no meio de tijolos
+    
     while True :
         ano = input('\nDigite o ANO de LANÇAMENTO: ')
         if ano.isdigit():
@@ -41,7 +44,8 @@ def cadastro_livro():
     while True : 
         estoque = input('\nDigite a QUANTIDADE de exemplares em ESTOQUE: ') 
         if estoque.isdigit(): 
-            livro['estoque'] = int(estoque)
+            estoque = int(estoque)
+            livro['estoque'] = list(range(1, estoque +1, 1))
             break 
         else :  
             print('\nValor inválido para estoque. Por favor, digite um número.')
@@ -65,7 +69,8 @@ def cadastro_hq():
     while True : 
         estoque = input('\nDigite a QUANTIDADE de exemplares em ESTOQUE: ') 
         if estoque.isdigit(): 
-            hq['estoque'] = int(estoque)
+            estoque = int(estoque)
+            hq['estoque'] = list(range(1, estoque +1, 1))
             break 
         else :  
             print('\nValor inválido para estoque. Por favor, digite um número.')
@@ -159,4 +164,169 @@ def ver_infos_hq(lista_hq):
     print("\n---------HQS CADASTRADAS:--------\n")
     for hq in lista_hq:
         print(f'\n📍 ID: {hq["id"]}\n\n📎 Título: {hq["titulo"]}\n\n🎞️  Gênero: {hq["genero"]}\n\n📦 Em estoque: {hq["estoque"]}\n\n🎬 Estúdio: {hq["estudio"]}\n\n🎆 Ano de lançamento: {hq["ano"]}')
-        print('=' * 50)  
+        print('=' * 50) 
+
+# preciso fazer um sistema que recolha a quantidade de estoque que tem na lista e qnd recolher ele leia qnts itens(filmes etc ) tem de estoque pra implementar no sistema de aluguel e devolucao, qro q mostre os status: tem ou não
+
+def controle_estoque_filme(lista_filme):
+
+    for filme in lista_filme:
+        if filme['estoque'] >= 1:
+            print('=' * 100) 
+            print(f'\n\nO filme {filme["titulo"]} tem {filme["estoque"]} exemplares em estoque.\n')
+            print('=' * 100)  
+        elif filme['estoque'] == 0 :
+            print(f'O filme {filme["titulo"]} está esgotado.')
+
+   
+    
+
+    while True:
+        
+    #se for 1 ou 2 aceita, se for diferente ou for  str recusa e volta em loop ate acertar
+           
+        try:   
+            print('\n1 - Sim\n2 - Não')
+            adic_filme = int(input('\nDeseja adicionar mais exemplares a algum filme?: '))
+             
+            if adic_filme != 1 and adic_filme != 2:  # se ofr um numero q n seja 1 ou 2 ele bloq 
+                print('\n\n\nOpção inválida! Tente novamente\n')
+                print('-' * 100)
+                continue # faz com q o codigo volte pro começo do loop e mostre a pergunta de novo
+            
+        except ValueError:    # se for um str 
+                print('-' * 100) 
+                print('\n\nOpção inválida! Tente novamente\n')
+                print('-' * 100)
+                continue
+        
+        while True:
+
+            if adic_filme == 2:
+                print('\n\nNenhuma ação executada!\n')
+                break
+        
+        
+
+            if adic_filme == 1:
+            
+                for filme in lista_filme:
+                
+                    try:
+                        filme_etiq_nome = filme['titulo']
+                        filme_etiq_id = filme['id']
+                        filme_etiq_estudio = filme['estudio']
+
+                        print(f"\n\nesses são as infos de cada filme:\n\n📎  Título: {filme_etiq_nome}\n📍  ID: {filme_etiq_id}\n🎞️   Gênero: {filme_etiq_estudio}\n📦 Em estoque: {filme["estoque"]}")
+
+
+                        id_estoque_filme = int(input('\n\nDigite o ID do filme que deseja adicionar exemplares: '))
+                
+                
+
+                        if id_estoque_filme == filme['id']: #int
+                            print('-' * 100) 
+                            print('\n' + '=' * 100)
+                            print(f'\n\nO filme {filme["titulo"]} tem {filme["estoque"]} exemplares em estoque.\n')
+                            print('\n' + '=' * 100)
+                            
+                    
+                            #COLOCAR DEF DA DEVOLUCAO (+1)
+                
+            
+                        elif id_estoque_filme != filme['id']: #int
+                            print('\n\nID não encontrado! Tente novamente.\n\n') 
+                            print('\n' + '-' * 100)
+                            continue
+                    
+                    except ValueError: #str
+                        print('\n\nID não encontrado! Tente novamente.\n\n') 
+                        print('\n' + '-' * 100)
+                        continue
+            
+            
+def aluguel_filme(lista_filme):
+    
+    while True:
+        
+    #se for 1 ou 2 aceita, se for diferente ou for  str recusa e volta em loop ate acertar
+           
+        try:   
+            print('\n1 - Sim\n2 - Não')
+            re_filme = int(input('\nDeseja reservar um filme?: '))
+             
+            if re_filme != 1 and re_filme != 2:  # se ofr um numero q n seja 1 ou 2 ele bloq 
+                print('\n\n\nOpção inválida! Tente novamente\n')
+                print('-' * 100)
+                continue # faz com q o codigo volte pro começo do loop e mostre a pergunta de novo
+            
+        except ValueError:    # se for um str 
+                print('-' * 100) 
+                print('\n\nOpção inválida! Tente novamente\n')
+                print('-' * 100)
+                continue
+        
+        while True:
+
+            if re_filme == 2:
+                print('\n\nNenhuma ação executada!\n')
+                break
+        
+        
+
+            if re_filme == 1:
+            
+                for filme in lista_filme:
+                
+                    try:
+                        filme_etiq_nome = filme['titulo']
+                        filme_etiq_id = filme['id']
+                        filme_etiq_estudio = filme['estudio']
+
+                        print(f"\n\nesses são as infos de cada filme:\n\n📎  Título: {filme_etiq_nome}\n📍  ID: {filme_etiq_id}\n🎞️   Gênero: {filme_etiq_estudio}\n📦 Em estoque: {filme["estoque"]}")
+
+
+                        id_reserva_filme = int(input('\n\nDigite o ID do filme que deseja reservar: '))
+    
+
+                        if id_reserva_filme == filme['id']: #int
+                            
+
+                            if filme['estoque'] <= 0:
+                                print('-' * 100)
+                                print(f'O filme {filme["titulo"]} está esgotado.')
+                                print('-' * 100)
+                            
+
+
+                            #PAREI NESSE DAQ DE BAIXO   
+                            elif filme['estoque'] > 5 :
+
+
+
+
+
+                                print('-' * 100) 
+                                print('\n' + '=' * 100)
+                                print(f'\n\nO filme {filme["titulo"]} tem {filme["estoque"]} exemplares em estoque.\n')
+                                print('\n' + '=' * 100)
+                            
+                    
+                        remover = filme['estoque'] -1
+                            #COLOCAR DEF DA DEVOLUCAO (+1)
+                
+            
+                        if id_reserva_filme != filme['id']: #int
+                            print('\n\nID não encontrado! Tente novamente.\n\n') 
+                            print('\n' + '-' * 100)
+                            continue
+                    
+                    except ValueError:  #str
+                        print('\n\nID não encontrado! Tente novamente.\n\n') 
+                        print('\n' + '-' * 100)
+                        continue
+
+                
+
+    #filme id tal
+    #pilha = 
