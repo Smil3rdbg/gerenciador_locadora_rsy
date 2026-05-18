@@ -243,7 +243,42 @@ def modificar_cadastrohq(lista_hq):
             else:
                 print('\n\nID não encontrado! Tente novamente.\n\n')
 
+def menu():
+    print("""
 
+====🎬FILMES🎬===
+
+1 - Cadastrar filme
+2 - apagar filme
+3 - Alterar dados do filme
+4 - Alugar/comprar
+5 - Estoque
+
+====📚LIVROS📚====
+
+6 - Registrar Livro
+7 - Apagar livro 
+8 - Alterar informações sobre o livro
+9 - Alugar/comprar
+10 - Estoque de livros
+
+====📖HQ'S📖====
+
+11 - Registrar HQ 
+12 - Apagar HQ 
+13 - Alterar informações da HQ
+14 - Alugar/comprar
+15 - Estoque de livros
+
+""")
+
+    opcao = input("Selecione uma das opções abaixo: ")
+
+    if opcao == "1":
+        input("Digite o nome do filme")
+        input("Digite o genero")
+        input("Digite estudio")
+        input("Digite o ano de lançamento")
 
 
 
