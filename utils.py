@@ -16,10 +16,10 @@ def chama_id():
 
 lista_filme = [
     {
-        'id': chama_id(),
+        'id': 44444,
         'titulo': 'Vingadores: Ultimato',
         'genero': 'Ação',
-        'estoque': 5,
+        'estoque': [1, 2, 3, 4, 5],
         'estudio': 'Marvel Studios',
         'ano': 2019
     }
