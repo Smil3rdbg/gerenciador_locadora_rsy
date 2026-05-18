@@ -330,3 +330,87 @@ def aluguel_filme(lista_filme):
 
     #filme id tal
     #pilha = 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ANOTACOES NA SALA
+
+
+
+
+ for filme in lista_filme[-1]['etiqueta']:
+                            
+                                if filme[-1]['etiqueta'] <= 0:
+                                    print('-' * 100)
+                                    print(f'O filme {filme["titulo"]} está esgotado.')
+                                    print('-' * 100)
+                            
+
+
+                            #PAREI NESSE DAQ DE BAIXO   
+                                elif lista_filme['estoque'] == reserva_filme:
+                                    retirado = filme['estoque'] - reserva_filme
+                                    print('-' * 100)
+                                    print(f'Foi retirado {retirado} exemplares do filme {filme['titulo']}!')
+
+                            
+
+
+
+
+                                print('-' * 100) 
+                                print('\n' + '=' * 100)
+                                print(f'\n\nO filme {filme["titulo"]} tem {filme["estoque"]} exemplares em estoque.\n')
+                                print('\n' + '=' * 100)
+                            
+                    
+                        remover = filme['estoque'] -1
+                            #COLOCAR DEF DA DEVOLUCAO (+1)
+                
+            
+                        if id_reserva_filme != filme['id']: #int
+                            print('\n\nID não encontrado! Tente novamente.\n\n') 
+                            print('\n' + '-' * 100)
+                            continue
+                    
+                    except ValueError:  #str
+                        print('\n\nID não encontrado! Tente novamente.\n\n') 
+                        print('\n' + '-' * 100)
+                        continue
+
+                
+
+    #filme id tal
+    #pilha = 
+
+    
