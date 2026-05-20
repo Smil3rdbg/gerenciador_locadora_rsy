@@ -1,8 +1,6 @@
-bom dia rodrygo <3 
-tkinter
-
-from tarefas import cadastro_filme, cadastro_livro, cadastro_hq, ver_infos_filme, ver_infos_livro, ver_infos_hq, apagar_cadastrofilme, apagar_cadastrolivro, apagar_cadastrohq, modificar_cadastrofilme, modificar_cadastrolivro, modificar_cadastrohq
-from utils import lista_filme, lista_livro, lista_hq
+from tarefas import * 
+from utils import *
+from dados import *
 
 # tem q colocar ate a variavel da lista pra importar 
 
@@ -244,45 +242,98 @@ def modificar_cadastrohq(lista_hq):
                 print('\n\nID não encontrado! Tente novamente.\n\n')
 
 def menu():
-    print("""
+    while True:
+        print("""
+====================================
+          SISTEMA LOCADORA
+====================================
 
-====🎬FILMES🎬===
-
+🎬 FILMES
 1 - Cadastrar filme
-2 - apagar filme
-3 - Alterar dados do filme
-4 - Alugar/comprar
-5 - Estoque
+2 - Ver filmes
+3 - Apagar filme
+4 - Alterar dados do filme
+5 - Alugar filme
+6 - Devolver filme
+7 - Estoque de filmes
 
-====📚LIVROS📚====
+📚 LIVROS
+8 - Cadastrar livro
+9 - Ver livros
+10 - Apagar livro
+11 - Alterar dados do livro
 
-6 - Registrar Livro
-7 - Apagar livro 
-8 - Alterar informações sobre o livro
-9 - Alugar/comprar
-10 - Estoque de livros
+📖 HQ'S
+12 - Cadastrar HQ
+13 - Ver HQs
+14 - Apagar HQ
+15 - Alterar dados da HQ
 
-====📖HQ'S📖====
-
-11 - Registrar HQ 
-12 - Apagar HQ 
-13 - Alterar informações da HQ
-14 - Alugar/comprar
-15 - Estoque de livros
-
+0 - Sair
 """)
 
-    opcao = input("Selecione uma das opções abaixo: ")
+        try:
+            opcao = int(input("Selecione uma opção: "))
+        except ValueError:
+            print("\nOpção inválida! Digite apenas números.\n")
+            continue
 
-    if opcao == "1":
-        input("Digite o nome do filme")
-        input("Digite o genero")
-        input("Digite estudio")
-        input("Digite o ano de lançamento")
+        if opcao == 1:
+            cadastro_filme(lista_filme)
+
+        elif opcao == 2:
+            ver_infos_filme(lista_filme)
+
+        elif opcao == 3:
+            ver_infos_filme(lista_filme)
+            apagar_cadastrofilme(lista_filme)
+
+        elif opcao == 4:
+            modificar_cadastrofilme(lista_filme)
+
+        elif opcao == 5:
+            alugar_filme(lista_filme)
+
+        elif opcao == 6:
+            devolucao_filme(lista_filme)
+
+        elif opcao == 7:
+            controle_estoque_filme(lista_filme)
+
+        elif opcao == 8:
+            cadastro_livro(lista_livro)
+
+        elif opcao == 9:
+            ver_infos_livro(lista_livro)
+
+        elif opcao == 10:
+            ver_infos_livro(lista_livro)
+            apagar_cadastrolivro(lista_livro)
+
+        elif opcao == 11:
+            modificar_cadastrolivro(lista_livro)
+
+        elif opcao == 12:
+            cadastro_hq(lista_hq)
+
+        elif opcao == 13:
+            ver_infos_hq(lista_hq)
+
+        elif opcao == 14:
+            ver_infos_hq(lista_hq)
+            apagar_cadastrohq(lista_hq)
+
+        elif opcao == 15:
+            modificar_cadastrohq(lista_hq)
+
+        elif opcao == 0:
+            print("\nPrograma encerrado!")
+            break
+
+        else:
+            print("\nOpção inválida! Tente novamente.\n")
 
 
-# Respondendo a Sara: Sim amiga, eu vou chamar a função :)
-
-cadastro_filme(lista_fime)
+menu()
 
 
