@@ -329,28 +329,60 @@ def controle_estoque_filme(lista_filme):
         
                 # o problema ta aqui
             
-                for filme in lista_filme:
-                    if id_estoque_filme != filme['estoque']:
-                        print('\n\nID não encontrado! Tente novamente.')
-                        print('-' * 100)
-                        continue
+                filme_encontrado = False
 
-                
-                    
+for filme in lista_filme:
 
-                if id_estoque_filme == filme['id']: #int         
-                    if len(filme['estoque']) >= 1:
-                        print('=' * 100) 
-                        print(f'\n\nO filme {filme["titulo"]} tem {filme["estoque"]} exemplares em estoque.\n')
-                        print('=' * 100) 
+    if id_reserva_filme == filme['id']:
 
-                    elif filme['estoque'] == 0 :
-                        print(f'O filme {filme["titulo"]} está esgotado.')
+        filme_encontrado = True
 
-            except ValueError:  #str
-                print('\n\nID não encontrado! Tente novamente.\n\n') 
-                print('\n' + '-' * 100)
-                continue
+        print('-' * 100)
+
+        filme_reserva = int(input('\nDigite quantos exemplares você quer reservar: '))
+
+        print('-' * 100)
+
+        filme_quantidade = filme_reserva
+
+        # VERIFICA SE TEM ESTOQUE SUFICIENTE
+        if len(filme['estoque']) < filme_quantidade:
+
+            print(f"\nEstoque insuficiente!")
+
+            print(f"Só existem {len(filme['estoque'])} exemplares do filme {filme['titulo']}.")
+
+            print('-' * 100)
+
+            break
+
+        else:
+            # PILHA (LIFO)
+            for _ in range(filme_quantidade):
+                filme['estoque'].pop()
+
+            print('-' * 100)
+
+            print(f"""
+Ação realizada com sucesso!
+
+Você retirou {filme_quantidade} exemplar(es)
+do filme {filme['titulo']}.
+
+Agora restam {len(filme['estoque'])} exemplar(es) em estoque.
+""")
+
+            print('-' * 100)
+
+            break
+
+# SE NÃO ENCONTRAR O ID
+if not filme_encontrado:
+    print('\nID não encontrado! Tente novamente.\n')
+
+# SE NÃO ENCONTRAR O ID
+if not filme_encontrado:
+    print('\nID não encontrado! Tente novamente.\n')
    
     
 
