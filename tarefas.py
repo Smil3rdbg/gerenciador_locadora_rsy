@@ -317,6 +317,7 @@ def devolucao_filme(lista_filme): #usei o conceito PILHA(lifo)
 
 # preciso fazer um sistema que recolha a quantidade de estoque que tem na lista e qnd recolher ele leia qnts itens(filmes etc ) tem de estoque pra implementar no sistema de aluguel e devolucao, qro q mostre os status: tem ou não
 
+
 def controle_estoque_filme(lista_filme):
 
     while True:
@@ -326,7 +327,7 @@ def controle_estoque_filme(lista_filme):
                 id_estoque_filme = int(input('\n\nDigite o ID do filme que deseja ver estoque: '))
     
         
-              
+                # o problema ta
             
                 for filme in lista_filme:
                     if id_estoque_filme != filme['estoque']:
@@ -429,10 +430,306 @@ def controle_estoque_filme(lista_filme):
                             print('\n\nID não encontrado! Tente novamente.\n\n') 
                             print('\n' + '-' * 100)
                             continue
+
+
+
+
+
+def cadastro_cliente(lista_cliente):
+    print('=' * 50, 'CADASTRO DE CLIENTES', '=' * 50)
+    cliente = {} 
+    cliente['nome'] = input('\nDigite o NOME do cliente: ')
+    cliente['cpf'] = input('\nDigite o CPF do cliente: ')
+    cliente['senha'] = input('\nDigite a SENHA q o cliente criou: ')
+    lista_cliente.append(cliente)
+    print('Cadastro efetuado com sucesso!')
+   
+
+def login(lista_cliente):
+    print('=' * 45, 'LOGIN', '=' * 45)
+    for cliente in lista_cliente:
+        while True:
+            lo_nome = input('\nDigite o nome do cliente: ')
+            lo_senha = input('\nDigite a senha: ')
+            
+            if lo_nome != cliente['nome'] and lo_senha != cliente['senha']:
+                print('\n\nUsuario não encontrado!')
+                print('=' * 100 )
+                continue
+            
+            elif lo_nome == cliente['nome'] and lo_senha != cliente['senha']:
+                print('\n\nUsuario não encontrado!')
+                print('=' * 100 )
+                continue
+
+            if lo_nome != cliente['nome'] and lo_senha == cliente['senha']:
+                print('\n\nUsuario não encontrado!')
+                print('=' * 100 )
+                continue
+                
+            if lo_nome == cliente['nome'] and lo_senha == cliente['senha']:
+                print('\n\nUsuario encontrado!\n\n\n---SEJA BEM-VINDO!---')
+                print('-' * 100 )
+                
+
+                # sistema de fila pra ver os filmes q estao na conta  da pessoa
+
+
+
+                # sitema reservar e sistema devolucao
+
+
+            
+                print('=' * 100 )
+                break
+
+
+def reservados_alugados(lista_filme, lista_livro, lista_hq, lista_cliente):
+    while True:
+        print('\nVocê deseja adicionar um conteudo na conta de um cliente?')
+        print('\n---OPÇÕES---\n(SIM)\n(NÂO)')
+        fila_flhq = input('Digite uma das opções acima: ')
+        sim = True
+        
+
+        print('\n---OPÇÕES---\n1 - filme\n2 - livro\n3 - hq')
+        escolha = input("Digite em qual local você quer adicionar uma reserva: ")
+
+
+        
+
+        for filme, livro, hq in lista_filme, lista_livro, lista_hq:
+            for cliente in lista_cliente:
+                
+                if not sim:
+                    sim = False
+                    print('Nenhuma ação executada.')
+                                   
+                
+                
+                
+                    if fila_flhq == sim:
+                        if escolha == 1:
+                            alugar_filme(lista_filme)
+                            cliente['alugados'].append(filme['titulo'])
+                            print('Ação realizada com sucesso.')
+                            print(f'O cliente possui {cliente['alugados']} na sua lista de itens alugados')
+
+
+
+
+
+
+def ver_infos_cliente(lista_cliente):
+    print("\n---------CLIENTES CADASTRADOS:--------\n")
+    for cliente in lista_cliente:  
+        print(f'\nNome: {cliente['nome']}\nCPF: {cliente['cpf']}\nSenha: {cliente['senha']}')
+        print('=' * 50)  #adiciona 50 = para separar visualmente as informações de cada filme cadastrado
+
+def controle_estoque_filme(lista_filme):
+
+    while True:
+        for filme in lista_filme:
+            try:
+        
+                id_estoque_filme = int(input('\n\nDigite o ID do filme que deseja ver estoque: '))
+    
+        
+                # o problema ta
+            
+                for filme in lista_filme:
+                    if id_estoque_filme != filme['estoque']:
+                        print('\n\nID não encontrado! Tente novamente.')
+                        print('-' * 100)
                         continue
 
                 
+                    
 
+                if id_estoque_filme == filme['id']: #int         
+                    if len(filme['estoque']) >= 1:
+                        print('=' * 100) 
+                        print(f'\n\nO filme {filme["titulo"]} tem {filme["estoque"]} exemplares em estoque.\n')
+                        print('=' * 100) 
 
+                    elif filme['estoque'] == 0 :
+                        print(f'O filme {filme["titulo"]} está esgotado.')
 
+            except ValueError:  #str
+                print('\n\nID não encontrado! Tente novamente.\n\n') 
+                print('\n' + '-' * 100)
+                continue
+   
     
+
+        while True:
+        
+    #se for 1 ou 2 aceita, se for diferente ou for  str recusa e volta em loop ate acertar
+           
+            try:   
+                    print('\n1 - Sim\n2 - Não')
+                    adic_filme = int(input('\nDeseja adicionar mais exemplares a algum filme?: '))
+             
+                    if adic_filme != 1 and adic_filme != 2:  # se ofr um numero q n seja 1 ou 2 ele bloq 
+                        print('\n\n\nOpção inválida! Tente novamente\n')
+                        print('-' * 100)
+                        continue # faz com q o codigo volte pro começo do loop e mostre a pergunta de novo
+            
+            except ValueError:    # se for um str 
+                print('-' * 100) 
+                print('\n\nOpção inválida! Tente novamente\n')
+                print('-' * 100)
+                continue
+        
+            while True:
+
+                if adic_filme == 2:
+                    print('\n\nNenhuma ação executada!\n')
+                    break
+        
+        
+
+                if adic_filme == 1:
+            
+                    for filme in lista_filme:
+                
+                        try:
+                            
+
+
+                            id_estoque_filme = int(input('\n\nDigite o ID do filme que deseja adicionar exemplares: '))
+                
+                
+
+                            if id_estoque_filme == filme['id']: #int
+                                
+                            #COLOCAR DEF DA DEVOLUCAO (+1) E RESERVA (-1)
+                                print('\n' * 2, '-' * 50, 'OPÇÕES DO ESTOQUE', '-' * 50)  
+                                print('\n\n1 - ADICIONAR EXEMPLARES NOVOS\n2 - RESERVAR FILME\n3 - DEVOLVER FILME\n0 - SAIR')
+                                resposta = input('\n\nDigite o que você quer fazer a seguir: ')
+
+                                if resposta == 1:
+                                    print('-' * 100) 
+                                    filme_quantidade = int(input('Digite a quantidade de exemplares que você quer adicionar:'))
+                                    [filme['estoque'].append(filme['estoque'][-1] + 1) for _ in range(filme_quantidade)] 
+                                    print('=' * 100)
+                                    print(f'\n\nAção realizada com sucesso!\n\nVocê adicionou {filme_quantidade} exemplares do filme {filme['titulo']} e agora contem {filme['estoque']} em estoque.')
+                                    print('=' * 100)
+                                    break
+
+
+                                elif resposta == 2:
+                                    alugar_filme(lista_filme)
+
+                                elif resposta == 3:
+                                    devolucao_filme(lista_filme)
+
+                                elif resposta == 0:
+                                    print('Você saiu do sistema de estoque!')
+                                    break
+
+            
+                            elif id_estoque_filme != filme['id']: #int
+                                print('\n\nID não encontrado! Tente novamente.\n\n') 
+                                print('\n' + '-' * 100)
+                                continue
+                    
+                        except ValueError: #str
+                            print('\n\nID não encontrado! Tente novamente.\n\n') 
+                            print('\n' + '-' * 100)
+                            continue
+
+
+
+
+
+def cadastro_cliente(lista_cliente):
+    print('=' * 50, 'CADASTRO DE CLIENTES', '=' * 50)
+    cliente = {} 
+    cliente['nome'] = input('\nDigite o NOME do cliente: ')
+    cliente['cpf'] = input('\nDigite o CPF do cliente: ')
+    cliente['senha'] = input('\nDigite a SENHA q o cliente criou: ')
+    lista_cliente.append(cliente)
+    print('Cadastro efetuado com sucesso!')
+   
+
+def login(lista_cliente):
+    print('=' * 45, 'LOGIN', '=' * 45)
+    for cliente in lista_cliente:
+        while True:
+            lo_nome = input('\nDigite o nome do cliente: ')
+            lo_senha = input('\nDigite a senha: ')
+            
+            if lo_nome != cliente['nome'] and lo_senha != cliente['senha']:
+                print('\n\nUsuario não encontrado!')
+                print('=' * 100 )
+                continue
+            
+            elif lo_nome == cliente['nome'] and lo_senha != cliente['senha']:
+                print('\n\nUsuario não encontrado!')
+                print('=' * 100 )
+                continue
+
+            if lo_nome != cliente['nome'] and lo_senha == cliente['senha']:
+                print('\n\nUsuario não encontrado!')
+                print('=' * 100 )
+                continue
+                
+            if lo_nome == cliente['nome'] and lo_senha == cliente['senha']:
+                print('\n\nUsuario encontrado!\n\n\n---SEJA BEM-VINDO!---')
+                print('-' * 100 )
+                
+
+                # sistema de fila pra ver os filmes q estao na conta  da pessoa
+
+
+
+                # sitema reservar e sistema devolucao
+
+
+            
+                print('=' * 100 )
+                break
+
+
+def reservados_alugados(lista_filme, lista_livro, lista_hq, lista_cliente):
+    while True:
+        print('\nVocê deseja adicionar um conteudo na conta de um cliente?')
+        print('\n---OPÇÕES---\n(SIM)\n(NÂO)')
+        fila_flhq = input('Digite uma das opções acima: ')
+        sim = True
+        
+
+        print('\n---OPÇÕES---\n1 - filme\n2 - livro\n3 - hq')
+        escolha = input("Digite em qual local você quer adicionar uma reserva: ")
+
+
+        
+
+        for filme, livro, hq in lista_filme, lista_livro, lista_hq:
+            for cliente in lista_cliente:
+                
+                if not sim:
+                    sim = False
+                    print('Nenhuma ação executada.')
+                                   
+                
+                
+                
+                    if fila_flhq == sim:
+                        if escolha == 1:
+                            alugar_filme(lista_filme)
+                            cliente['alugados'].append(filme['titulo'])
+                            print('Ação realizada com sucesso.')
+                            print(f'O cliente possui {cliente['alugados']} na sua lista de itens alugados')
+
+
+
+
+
+
+def ver_infos_cliente(lista_cliente):
+    print("\n---------CLIENTES CADASTRADOS:--------\n")
+    for cliente in lista_cliente:  
+        print(f'\nNome: {cliente['nome']}\nCPF: {cliente['cpf']}\nSenha: {cliente['senha']}')
+        print('=' * 50)  #adiciona 50 = para separar visualmente as informações de cada filme cadastrado
