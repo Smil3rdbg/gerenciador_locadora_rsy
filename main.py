@@ -281,4 +281,8 @@ def menu():
         input("Digite o ano de lançamento")
 
 
+vc n deveria chamar a funcao ja q eu ja criei ela?
+
+cadastro_filme(lista_fime)
+
 
