@@ -327,7 +327,7 @@ def controle_estoque_filme(lista_filme):
                 id_estoque_filme = int(input('\n\nDigite o ID do filme que deseja ver estoque: '))
     
         
-                # o problema ta
+                # o problema ta aqui
             
                 for filme in lista_filme:
                     if id_estoque_filme != filme['estoque']:
