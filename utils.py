@@ -28,3 +28,12 @@ lista_filme = [
 lista_livro = []  #cria uma lista vazia para armazenar os livros cadastrados
 
 lista_hq = [] 
+
+lista_cliente = [
+    {
+        'nome' : 'sara dos santos de oliveira',
+        'cpf' : '123456789-00',
+        'senha' : '123456',
+        'alugados' : ['Vingadores: Ultimato'],  
+    }
+]
