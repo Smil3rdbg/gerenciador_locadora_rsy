@@ -439,8 +439,11 @@ def reservados_alugados(lista_filme, lista_livro, lista_hq, lista_cliente):
                                 print(f'O cliente possui {cliente['alugados']} na sua lista de itens alugados')
                                 break
                             break
-                
-                
+                            
+                    elif escolha == '4':
+                        print("saindo")
+                        break
+                        
                     else:
                         print('\n\nResposta invalida! tente novamente.\n\n')
                         continue
