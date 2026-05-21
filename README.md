@@ -13,6 +13,7 @@ dados.py: armazena dados fixos do sistema, como tuplas de status de estoque.
 
 
 =========RECOMENDAÇÕES=========
+
 O projeto deve ser rodado em python 3.10 ou superior.
 
 
