@@ -715,68 +715,118 @@ def login(lista_cliente):
 
 def reservados_alugados(lista_filme, lista_livro, lista_hq, lista_cliente):
     while True:
-        print('=' * 20, 'SISTEMA DE REGISTRO DE ALUGUEL', '=' * 20 )
-        print('\n\nVocê deseja adicionar um item alugado na conta de um cliente?')
-        print('\n\n\n---OPÇÕES---\n\n(SIM)\n\n(NÂO)')
-        fila_flhq = input('\n\nDigite uma das opções acima: ')
-        
+        print('=' * 20, 'SISTEMA DE REGISTRO DE ALUGUEL', '=' * 20)
+        fila_flhq = input('\nDeseja adicionar um item alugado? SIM/NÃO: ').lower()
 
         if fila_flhq == 'nao' or fila_flhq == 'não':
-                print('\nSaindo do sistema...')
-                return
-        
-        
-        elif fila_flhq == 'sim':
-                while True:
-                    print('=' * 100)
-                    print('\n---OPÇÕES---\n1 - filme\n2 - livro\n3 - hq\n4 - SAIR\n\n')
-                    escolha = input("Digite em qual local você quer adicionar uma reserva: ")
-                    
-                    if escolha == '1':
-                        alugar_filme(lista_filme)
-                        for cliente in lista_cliente:
-                            for filme in lista_filme:
-                            
-                                # PROBLEMA TA AQUI em todas as opcoes dessa def só
+            print('\nSaindo do sistema...')
+            return
 
-                                cliente['alugados'].append(filme['titulo'])
-                                print('\n\nAção realizada com sucesso.')
-                                print(f'\nO cliente possui {cliente['alugados']} na sua lista de itens alugados')
-                                break
-                            break
-                        
-                    elif escolha == '2':
-                        alugar_livro(lista_livro)
-                        for livro in lista_livro:
-                            for cliente in lista_cliente:
-                                
-                                cliente['alugados'].append(livro['titulo'])
-                                print('Ação realizada com sucesso.')
-                                print(f'O cliente possui {cliente['alugados']} na sua lista de itens alugados')
-                             
-                        
-                    elif escolha == '3':
-                        alugar_hq(lista_hq)
-                        for hq in lista_hq:
-                            for cliente in lista_cliente:
-                                
-                                cliente['alugados'].append(hq['titulo'])
-                                print('Ação realizada com sucesso.')
-                                print(f'O cliente possui {cliente['alugados']} na sua lista de itens alugados')
-                             
-                            
-                    elif escolha == '4':
-                        print("\n\nsaindo...")
-                        break
-                        
-                    else:
-                        print('\n\nResposta invalida! tente novamente.\n\n')
-                        continue
-                        
-        
-        else:        
-            print('\n\nResposta invalida, Digite apenas SIM ou NÃO.\n\n')
-            continue
+        elif fila_flhq == 'sim':
+            print('\n--- OPÇÕES ---')
+            print('1 - filme')
+            print('2 - livro')
+            print('3 - hq')
+            print('4 - sair')
+
+            escolha = input('\nDigite a opção: ')
+
+            if len(lista_cliente) == 0:
+                print('\nNenhum cliente cadastrado.')
+                return
+
+            cliente = lista_cliente[0]  # pega só UM cliente
+
+            if escolha == '1':
+                ver_infos_filme(lista_filme)
+                id_item = ler_numero('\nDigite o ID do filme alugado: ')
+                item = buscar_por_id(lista_filme, id_item)
+
+                if item is None:
+                    print('\nFilme não encontrado.')
+                    continue
+
+                quantidade = ler_numero('\nDigite quantos exemplares quer alugar: ')
+
+                if quantidade <= 0:
+                    print('\nQuantidade inválida.')
+                    continue
+
+                if len(item['estoque']) < quantidade:
+                    print('\nEstoque insuficiente.')
+                    continue
+
+                for _ in range(quantidade):
+                    item['estoque'].pop()
+
+                cliente['alugados'].append(item['titulo'])
+
+                print('\nAção realizada com sucesso.')
+                print(f"O cliente possui {cliente['alugados']} na lista de itens alugados.")
+
+            elif escolha == '2':
+                ver_infos_livro(lista_livro)
+                id_item = ler_numero('\nDigite o ID do livro alugado: ')
+                item = buscar_por_id(lista_livro, id_item)
+
+                if item is None:
+                    print('\nLivro não encontrado.')
+                    continue
+
+                quantidade = ler_numero('\nDigite quantos exemplares quer alugar: ')
+
+                if quantidade <= 0:
+                    print('\nQuantidade inválida.')
+                    continue
+
+                if len(item['estoque']) < quantidade:
+                    print('\nEstoque insuficiente.')
+                    continue
+
+                for _ in range(quantidade):
+                    item['estoque'].pop()
+
+                cliente['alugados'].append(item['titulo'])
+
+                print('\nAção realizada com sucesso.')
+                print(f"O cliente possui {cliente['alugados']} na lista de itens alugados.")
+
+            elif escolha == '3':
+                ver_infos_hq(lista_hq)
+                id_item = ler_numero('\nDigite o ID da HQ alugada: ')
+                item = buscar_por_id(lista_hq, id_item)
+
+                if item is None:
+                    print('\nHQ não encontrada.')
+                    continue
+
+                quantidade = ler_numero('\nDigite quantos exemplares quer alugar: ')
+
+                if quantidade <= 0:
+                    print('\nQuantidade inválida.')
+                    continue
+
+                if len(item['estoque']) < quantidade:
+                    print('\nEstoque insuficiente.')
+                    continue
+
+                for _ in range(quantidade):
+                    item['estoque'].pop()
+
+                cliente['alugados'].append(item['titulo'])
+
+                print('\nAção realizada com sucesso.')
+                print(f"O cliente possui {cliente['alugados']} na lista de itens alugados.")
+
+            elif escolha == '4':
+                print('\nSaindo...')
+                return
+
+            else:
+                print('\nResposta inválida.')
+
+        else:
+            print('\nDigite apenas SIM ou NÃO.')
 
 
 def devolucao_alugados(lista_filme, lista_livro, lista_hq, lista_cliente):
