@@ -377,3 +377,78 @@ def login(lista_cliente):
 
     print("\nUsuário não encontrado!\n")
     return None
+
+
+
+# =========================
+# SISTEMA FILA (FIFO) (TEM Q TERMINAR)
+# =========================
+
+
+def reservados_alugados(lista_filme, lista_livro, lista_hq, lista_cliente):
+    while True:
+        print('=' * 20, 'SISTEMA DE REGISTRO DE ALUGUEL', '=' * 20 )
+        print('\n\nVocê deseja adicionar um item alugado na conta de um cliente?')
+        print('\n\n\n---OPÇÕES---\n\n(SIM)\n\n(NÂO)')
+        fila_flhq = input('\n\nDigite uma das opções acima: ')
+        
+        
+         # formula para juntar varios itens e listas de parametro de uma vez
+    
+
+        if fila_flhq == 'nao' or fila_flhq == 'não':
+                print('\nNenhuma ação executada.')
+                break
+        
+        
+        elif fila_flhq == 'sim':
+                while True:
+                    print('=' * 100)
+                    print('\n---OPÇÕES---\n1 - filme\n2 - livro\n3 - hq\n\n')
+                    escolha = input("Digite em qual local você quer adicionar uma reserva: ")
+                    
+                    if escolha == '1':
+                        alugar_filme(lista_filme)
+                        for filme in lista_filme:
+                            for cliente in lista_cliente:
+                                
+                                cliente['alugados'].append(filme['titulo'])
+                                print('\n\nAção realizada com sucesso.')
+                                print(f'\nO cliente possui {cliente['alugados']} na sua lista de itens alugados')
+                                break
+                            break
+                        
+                    elif escolha == '2':
+                        alugar_livro(lista_livro)
+                        for livro in lista_livro:
+                            for cliente in lista_cliente:
+                                
+                                cliente['alugados'].append(livro['titulo'])
+                                print('Ação realizada com sucesso.')
+                                print(f'O cliente possui {cliente['alugados']} na sua lista de itens alugados')
+                                break
+                            break
+                        
+                    elif escolha == '3':
+                        alugar_hq(lista_hq)
+                        for hq in lista_hq:
+                            for cliente in lista_cliente:
+                                
+                                cliente['alugados'].append(hq['titulo'])
+                                print('Ação realizada com sucesso.')
+                                print(f'O cliente possui {cliente['alugados']} na sua lista de itens alugados')
+                                break
+                            break
+                
+                
+                    else:
+                        print('\n\nResposta invalida! tente novamente.\n\n')
+                        continue
+                        
+        
+        
+        
+        
+        else:        
+            print('\n\nResposta invalida, Digite apenas SIM ou NÃO.\n\n')
+            continue
