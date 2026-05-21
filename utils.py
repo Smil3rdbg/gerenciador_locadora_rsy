@@ -31,7 +31,7 @@ lista_hq = []
 
 lista_cliente = [
     {
-        'nome' : 'sara dos santos de oliveira',
+        'nome' : 'sara dos santos',
         'cpf' : '123456789-00',
         'senha' : '123456',
         'alugados' : ['Vingadores: Ultimato'],  
