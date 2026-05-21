@@ -175,35 +175,41 @@ def apagar_cadastrohq(lista_hq):
 def alugar_filme(lista_filme):
     print("\n========= ALUGAR FILME =========")
 
-    if len(lista_filme) == 0:
-        print("\nNenhum filme cadastrado.\n")
-        return
+if len(lista_filme) == 0:
+    print("\nNenhum filme cadastrado.\n")
 
+else:
     ver_infos_filme(lista_filme)
 
-    id_reserva_filme = ler_numero("\nDigite o ID do filme que deseja reservar: ")
+    id_reserva_filme = ler_numero(
+        "\nDigite o ID do filme que deseja reservar: "
+    )
 
     filme = buscar_por_id(lista_filme, id_reserva_filme)
 
     if filme is None:
         print("\nID não encontrado! Tente novamente.\n")
-        return
 
-    filme_quantidade = ler_numero("\nDigite quantos exemplares você quer reservar: ")
+    else:
+        filme_quantidade = ler_numero(
+            "\nDigite quantos exemplares você quer reservar: "
+        )
 
-    if filme_quantidade <= 0:
-        print("\nQuantidade inválida!\n")
-        return
+        if filme_quantidade <= 0:
+            print("\nQuantidade inválida!\n")
 
-    if len(filme["estoque"]) < filme_quantidade:
-        print("\nEstoque insuficiente!")
-        print(f"Só existem {len(filme['estoque'])} exemplar(es) do filme {filme['titulo']}.")
-        return
+        elif len(filme["estoque"]) < filme_quantidade:
+            print("\nEstoque insuficiente!")
+            print(
+                f"Só existem {len(filme['estoque'])} exemplar(es) "
+                f"do filme {filme['titulo']}."
+            )
 
-    for _ in range(filme_quantidade):
-        filme["estoque"].pop()
+        else:
+            for i in range(filme_quantidade):
+                filme["estoque"].pop()
 
-    print(f"""
+            print(f"""
 Ação realizada com sucesso!
 
 Você retirou {filme_quantidade} exemplar(es)
@@ -211,7 +217,6 @@ do filme {filme["titulo"]}.
 
 Agora restam {len(filme["estoque"])} exemplar(es) em estoque.
 """)
-
 
 # =========================
 # DEVOLUÇÃO DE FILME
