@@ -283,7 +283,14 @@ def menu():
 19 - Alugar HQ
 20 - Devolver HQ
 21 - Estoque de HQ
-
+              
+👤 CLIENTES
+22 - Cadastrar cliente
+23 - Ver clientes
+24 - Login 
+25 - Reservar item            
+26 - Devolver item
+              
 0 - Sair
 """)
 
@@ -358,6 +365,21 @@ def menu():
 
         elif opcao == 21:
             controle_estoque_hq(lista_hq)
+        
+        elif opcao == 22:
+            cadastro_cliente(lista_cliente)
+
+        elif opcao == 23:
+            ver_infos_cliente(lista_cliente)
+
+        elif opcao == 24:
+            login(lista_cliente)
+
+        elif opcao == 25:
+            reservados_alugados(lista_filme, lista_livro, lista_hq, lista_cliente)
+        
+        elif opcao == 26:
+            devolucao_alugados(lista_filme, lista_livro, lista_hq, lista_cliente)
 
         elif opcao == 0:
             print("\nPrograma encerrado!")
