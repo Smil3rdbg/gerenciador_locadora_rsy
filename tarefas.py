@@ -893,3 +893,4 @@ def devolucao_alugados(lista_filme, lista_livro, lista_hq, lista_cliente):
         else:        
             print('\n\nResposta invalida, Digite apenas SIM ou NÃO.\n\n')
             continue
+
