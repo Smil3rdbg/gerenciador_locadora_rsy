@@ -37,3 +37,4 @@ lista_cliente = [
         'alugados' : ['Vingadores: Ultimato'],  
     }
 ]
+
