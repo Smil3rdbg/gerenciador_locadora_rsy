@@ -34,3 +34,4 @@ lista_filme = [
 lista_livro = []
 
 lista_hq = []
+
