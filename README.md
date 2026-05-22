@@ -4,13 +4,13 @@ O tema escolhido para o projeto foi uma Locadora de Filmes. O sistema foi desenv
 
 ---
 
-# RESUMO DO PROJETO
+## RESUMO DO PROJETO
 
 O Sistema de Locadora é um projeto desenvolvido em Python com o objetivo de gerenciar o cadastro e o controle de filmes, livros e HQs em uma locadora. O programa foi criado para praticar conceitos básicos e intermediários da linguagem Python, utilizando organização em múltiplos arquivos e estruturas de dados.
 
 ---
 
-## EXPLICAÇÃO CONCEITUAL
+### EXPLICAÇÃO CONCEITUAL
 
 - FIFO(First in First out): O FIFO é o conceito de o primeiro item colocado na lista ser o primeiro a sair, como um sistema de fila no dia a dia. Adicionando um item em uma lista e retirando o primeiro item dessa mesma lista.  Sendo utilizado os comandos .pop() para remoção e .append() para adição.
 
