@@ -24,7 +24,7 @@ for _ in range(quantidade):
                 cliente['alugados'].append(item['titulo'])
 '''
 
-Que esta localizado na def de reservados_alugados().
+Que esta localizado na ***def de reservados_alugados().***
 
 <br>
 
@@ -34,9 +34,11 @@ Que esta localizado na def de reservados_alugados().
 'cliente['alugados'].pop(0)'
 
 
-Que esta localizado na def de devolucao_alugados().   
+Que esta localizado na ***def de devolucao_alugados().***   
 
 ---
+
+<br>
 
 - LIFO(Last in First out): Ao contrario do conceito FIFO, o LIFO adiciona no ultimo lugar da lista e é retirado a partir do ultimo item da lista. Sendo utilizado sempre o exemplo de uma pilha de pratos em ensinos acadêmicos. Sendo utilizado os comandos .pop() para remoção e .append() para adição.
 
@@ -46,7 +48,7 @@ Que esta localizado na def de devolucao_alugados().
 
 'filme["estoque"].pop()'
 
-Localizado no def de alugar filmes, livros e HQs
+Localizado no def de ***alugar*** filmes, livros e HQs
 
 <br>
 
@@ -59,6 +61,6 @@ Localizado no def de alugar filmes, livros e HQs
         filme["estoque"].append(novo_exemplar)
 '''
 
-Localizado no def para devolução de filmes, livros e HQs.
+Localizado no def para ***devolução** de filmes, livros e HQs.
 
 ---
