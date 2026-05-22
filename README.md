@@ -10,9 +10,9 @@ O Sistema de Locadora é um projeto desenvolvido em Python com o objetivo de ger
 
 ---
 
-##EXPLICAÇÃO CONCEITUAL
+## EXPLICAÇÃO CONCEITUAL
 
--FIFO(First in First out): O FIFO é o conceito de o primeiro item colocado na lista ser o primeiro a sair, como um sistema de fila no dia a dia. Adicionando um item em uma lista e retirando o primeiro item dessa mesma lista.  Sendo utilizado os comandos .pop() para remoção e .append() para adição.
+- FIFO(First in First out): O FIFO é o conceito de o primeiro item colocado na lista ser o primeiro a sair, como um sistema de fila no dia a dia. Adicionando um item em uma lista e retirando o primeiro item dessa mesma lista.  Sendo utilizado os comandos .pop() para remoção e .append() para adição.
 
 
 O FIFO aparece nesse código:
@@ -32,10 +32,11 @@ E nesse código:
 'cliente['alugados'].pop(0)'
 
 
-Que esta localizado na def de devolucao_alugados().
+Que esta localizado na def de devolucao_alugados().   
+
 ---
 
--LIFO(Last in First out): Ao contrario do conceito FIFO, o LIFO adiciona no ultimo lugar da lista e é retirado a partir do ultimo item da lista. Sendo utilizado sempre o exemplo de uma pilha de pratos em ensinos acadêmicos. Sendo utilizado os comandos .pop() para remoção e .append() para adição.
+- LIFO(Last in First out): Ao contrario do conceito FIFO, o LIFO adiciona no ultimo lugar da lista e é retirado a partir do ultimo item da lista. Sendo utilizado sempre o exemplo de uma pilha de pratos em ensinos acadêmicos. Sendo utilizado os comandos .pop() para remoção e .append() para adição.
 
 O LIFO aparece nesse código:
 
@@ -54,4 +55,5 @@ E nesse código:
 '''
 
 Localizado no def para devolução de filmes, livros e HQs.
+
 ---
