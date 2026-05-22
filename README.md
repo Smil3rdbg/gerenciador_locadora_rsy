@@ -78,9 +78,12 @@ Localizado no def para ***devolução*** de filmes, livros e HQs.
 
 ### EXPLICAÇÃO DO DICIONARIO APLICADO NO PROJETO
 
+<br>
+
 No projeto foi utilizado o modo de implementação de um dicionário vazio a principio para que o usuário digitasse as informações pedidas nos campos de cadastro, e esses dados vão direto a etiquetas criadas dentro do dicionário afim de organização de dados, após essas etapas os dados vão para listas de seus respectivos tópicos, sendo eles: lista de filmes, livros, HQs e usuários.
- 
- <br>
+
+<br>
+<br>
 
 '''
 filme = {
@@ -97,8 +100,11 @@ filme = {
 
 ### EXPLICAÇÃO SOBRE LISTAS E TUPLAS UTILIZADAS NO PROJETO
 
+<br>
+
 A Lista foi utilizada para o armazenamento dos dados adicionados via usuário nos cadastros, sendo usada por ter a flexibilidade de mudanças, sendo indicado para auxiliar na logística da locadora.
 
+<br>
 <br>
 
 A Tupla foi selecionada para informar somente quando os itens da locadora estiverem disponíveis para aluguel, sendo assim para dados imutáveis, contendo apenas os status Disponível e Não disponível para melhor controle de logística. 
@@ -108,8 +114,11 @@ A Tupla foi selecionada para informar somente quando os itens da locadora estive
 
 ### DIVISÃO DE ARQUIVOS
 
+<br>
+
 O projeto foi dividido em quatro arquivos principais:
 
+<br>
 <br>
 
 **-main.py:** responsável pelo menu principal e pela interação com o usuário. 
@@ -120,6 +129,8 @@ O projeto foi dividido em quatro arquivos principais:
 
 **-dados.py:** armazena dados fixos do sistema, como tuplas de status de estoque.
 
+<br>
+
 ---
 
 
@@ -128,12 +139,18 @@ O projeto foi dividido em quatro arquivos principais:
 **O projeto deve ser rodado em python 3.10 ou superior. (É preferivel utilizar a versão mais atual do Python)**
 
 <br>
+<br>
 
 Para executar o programa, basta abrir o terminal na pasta do projeto e utilizar o comando:
 
 **python main.py**
 
+<br>
+
 Após iniciar o sistema, o usuário poderá navegar pelo menu e escolher as funcionalidades desejadas.
+
+<br>
+<br>
 
 ***Não são necessárias bibliotecas externas***
 
@@ -142,14 +159,22 @@ Após iniciar o sistema, o usuário poderá navegar pelo menu e escolher as func
 
 ### FUNCIONALIDADES 
 
+<br>
+
 O sistema possui funcionalidades como cadastro de filmes, livros e HQs, visualização dos itens cadastrados, alteração de informações, exclusão de cadastros, controle de estoque, aluguel de filmes e devolução de exemplares. Além disso, o programa informa se determinado item possui estoque disponível ou se está esgotado, e foi implementado um código para a criação aleatória de "ID" para auxiliar nos sistemas para ações especificas e delicadas como: excluir, modificar, retirar e adicionar itens. 
+
+<br>
 
 ---
 
 
 ### DIFICULDADES E APRENDIZADOS
 
+<br>
+
 A maior dificuldade ao longo do projeto foi ao implementar códigos novos, sendo eles recém-aprendidos ou não. Percebemos o impacto que um pequeno conjunto de códigos novos tem na lógica inteira de um código, tendo que reestruturar toda a lógica e o esqueleto do código diversas vezes, conforme o que queríamos entregar. Apesar das dificuldades, este projeto nos mudou como estudantes. A nossa visão de programação se tornou mais concreta, e observar como “simples” palavras e comandos, quando unidos, podem dar vida a projetos magníficos nos proporcionou sentimentos de entusiasmo e motivação.  
+
+<br>
 
 ---
 
@@ -157,7 +182,11 @@ A maior dificuldade ao longo do projeto foi ao implementar códigos novos, sendo
 
 ### OBSERVAÇÕES
 
+<br>
+
 Este projeto foi desenvolvido para fins acadêmicos, com foco no aprendizado de lógica de programação, manipulação de estruturas de dados e organização de projetos em Python.
+
+<br>
 
 ---
 
