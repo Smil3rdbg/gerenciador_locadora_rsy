@@ -25,6 +25,7 @@ for _ in range(quantidade):
 
 Que esta localizado na def de reservados_alugados().
 
+<br>
 
 **E nesse código:**
 
