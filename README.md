@@ -24,8 +24,11 @@ for _ in range(quantidade):
                 cliente['alugados'].append(item['titulo'])
 '''
 
+<br>
+
 Que esta localizado na ***def de reservados_alugados().***
 
+<br>
 <br>
 
 **E nesse código:**
@@ -33,6 +36,7 @@ Que esta localizado na ***def de reservados_alugados().***
 
 'cliente['alugados'].pop(0)'
 
+<br>
 
 Que esta localizado na ***def de devolucao_alugados().***   
 
@@ -48,8 +52,11 @@ Que esta localizado na ***def de devolucao_alugados().***
 
 'filme["estoque"].pop()'
 
+<br>
+
 Localizado no def de ***alugar*** filmes, livros e HQs
 
+<br>
 <br>
 
 ***E nesse código:***
@@ -60,6 +67,8 @@ Localizado no def de ***alugar*** filmes, livros e HQs
         novo_exemplar = len(filme["estoque"]) + 1
         filme["estoque"].append(novo_exemplar)
 '''
+
+<br>
 
 Localizado no def para ***devolução*** de filmes, livros e HQs.
 
