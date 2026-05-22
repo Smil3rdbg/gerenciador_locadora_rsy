@@ -1,8 +1,11 @@
 #sistema multa, deixar bonitinho/organizado, configuro aparencia data, sistema de apagar e salvar(tuplas), configurar dinheiro pra float.  
 
-#LISTAS .
+#entre '' é str, sem é int
 
-#entre '' é str sem é int
+
+# =========================
+# LISTAS
+# =========================
 
 
 import random
