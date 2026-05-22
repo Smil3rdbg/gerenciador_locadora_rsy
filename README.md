@@ -91,6 +91,7 @@ A Lista foi utilizada para o armazenamento dos dados adicionados via usuário no
 <br>
 
 A Tupla foi selecionada para informar somente quando os itens da locadora estiverem disponíveis para aluguel, sendo assim para dados imutáveis, contendo apenas os status Disponível e Não disponível para melhor controle de logística. 
+
 ---
 
 
